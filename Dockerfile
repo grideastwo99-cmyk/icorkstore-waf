@@ -1,14 +1,15 @@
 FROM nginx:alpine
 
-# Install cron for logging
-RUN apk add --no-cache curl cron
+# Create directories
+RUN mkdir -p /var/www/waf /var/log/nginx
 
-# Copy WAF config
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY dashboard.html /usr/share/nginx/html/
+# Copy WAF files
+COPY Nginx.conf /etc/nginx/nginx.conf
+COPY Dashboard.html /usr/share/nginx/html/index.html
 
-# Create logs dir
-RUN mkdir -p /var/log/nginx /var/www/waf
+# Fix permissions
+RUN chmod -R 755 /usr/share/nginx/html /var/log/nginx \
+    && chown -R nginx:nginx /var/log/nginx /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
