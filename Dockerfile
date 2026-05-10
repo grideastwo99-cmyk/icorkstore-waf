@@ -4,8 +4,8 @@ FROM nginx:alpine
 RUN apk add --no-cache curl cron
 
 # Copy WAF config
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY dashboard.html /usr/share/nginx/html/
+COPY Nginx.conf /etc/nginx/nginx.conf
+COPY Dashboard.html /usr/share/nginx/html/
 
 # Create logs dir
 RUN mkdir -p /var/log/nginx /var/www/waf
