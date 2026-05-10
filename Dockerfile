@@ -4,7 +4,7 @@ FROM nginx:alpine
 RUN mkdir -p /var/www/waf /var/log/nginx
 
 # Copy WAF files
-COPY Nginx.conf /etc/nginx/nginx.conf
+COPY Nginx.conf /etc/nginx/Nginx.conf
 COPY Dashboard.html /usr/share/nginx/html/index.html
 
 # Fix permissions
